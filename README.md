@@ -59,11 +59,11 @@ A Django web app to store your favorite songs and albums in one place.
     ```
 
 - If you see any bug or you have a feature suggestion, create an issue.
-- Start working on an issue only after it has been approved by the maintainers.
+- Start working on an issue only after it has been approved by the maintainer.
 - Wait till the end of the day to get the reply on an issue or review of a PR.
 
 
-## SLoP Maintainers
+## Eccles Project
 This project is a part of my internship project in Eccles IT Ltd United Kingdom Manchester Area.
 maintained by:
 - [Daniel Successful](https://github.com/BISHOPDAN)
