@@ -46,7 +46,6 @@ lib/
 lib64/
 parts/
 sdist/
-venv/
 var/
 *.egg-info/
 .installed.cfg
@@ -91,6 +90,7 @@ local_settings.py
 
 .env
 db.sqlite3
+.venv/
 
 #pycharm 
 .idea/
