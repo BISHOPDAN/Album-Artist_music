@@ -16,6 +16,7 @@ urlpatterns = [
     path('profile/',views.profileView,name='profile'),
     path('profile-update/',views.profileUpdate,name='profile-update'),
     path('profile-create/',views.profileCreate,name='profile-create'),
+
     #Signup/Signin
     path('register/', views.registerPage, name="register"),
 	path('login/', views.loginPage, name="login"),  
@@ -24,7 +25,7 @@ urlpatterns = [
     path('account-delete/', views.delete_user, name="account-delete"),
 
     path('index/', views.index, name='index'),
-
+    
     #Watch-Later
     path('watchlater/', views.watchlater, name='watchlater'),
 

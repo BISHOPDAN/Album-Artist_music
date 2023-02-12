@@ -165,7 +165,8 @@ SOCIAL_AUTH_FACEBOOK_SECRET = ''
 SOCIAL_AUTH_GOOGLE_KEY = ''
 SOCIAL_AUTH_GOOGLE_SECRET = ''
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
 
 LOGIN_URL = 'fpage/login'
 LOGOUT_URL = 'fpage/logout'

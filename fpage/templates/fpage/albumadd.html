@@ -13,6 +13,9 @@
                 <th scope="col">Artist</th>
                 <th scope="col">Genre</th>
                 <th scope="col">favorite</th>
+                <th scope="col">Album Description</th>
+                <th scope="col">Year_of_release</th>
+                <th scope="col">album_format</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -23,6 +26,9 @@
                 <td>{{ album.artist }}</td>
                 <td>{{ album.genre }}</td>
                 <td>{{ album.is_favorite_album }}</td>
+                <td>{{ album.Album_description }}</td>
+                <td>{{ album.Year_of_release }}</td>
+                <td>{{ album.album_format }}</td>
                 <td><a type="button" class="btn btn-warning" href="{%url 'fpage:album-update' album.id  %}">Update</a>
                     <a type="button" class="btn btn-danger" href="{%url 'fpage:album-delete' album.id  %}">Delete</a>
                 </td>

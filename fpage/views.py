@@ -1,28 +1,14 @@
-from django.db import models
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import loader
 from .forms import CreateUserForm,AlbumForm,SongForm,ProfileForm
 from .models import Album, Song, UserProfile,Watchlater
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Case, When
 
 
-# from django.db.models import Q
-# Generic method for making a view.
-
-#class IndexView(generic.ListView):
-    #template_name='fpage/index.html'
-    #context_object_name='all_Albums'
-    #def get_queryset(self):
-     #   return Album.objects.all()
-
-#class DetailView(generic.DetailView):
-  #  model = Album
-   # template_name='fpage/detail.html'
 def search(request):
     query = request.GET.get("query")
     song = Song.objects.all()
@@ -125,7 +111,7 @@ def profileView(request):
 @login_required(login_url='fpage:login') 
 def profileUpdate(request): 
     profile= get_object_or_404(UserProfile, user=request.user)
-    form = ProfileForm(initial={'firstname': profile.first_name , 'lastname': profile.last_name, 'email': profile.email, 'phone_num': profile.phone_num, 'fav_genre':profile.fav_genre , 'profile_image':profile.profile_image})
+    form = ProfileForm(initial={'firstname': profile.first_name , 'lastname': profile.last_name, 'email': profile.email, 'fav_genre':profile.fav_genre , 'profile_image':profile.profile_image})
     if request.method == "POST":  
         form = ProfileForm(request.POST, instance=profile)  
         if form.is_valid():  
@@ -155,6 +141,9 @@ def profileCreate(request):
     messages.success(request, "Profile Created!" )
     return render(request,'fpage/forms.html',{'form':form})
 
+
+
+
 @login_required(login_url='fpage:login')
 def index(request):
     '''Index View for the fpage app. Home page of the app.
@@ -166,6 +155,7 @@ def index(request):
         'all_albums': all_albums,
     }
     return render(request, 'fpage/index.html', context)
+
 
 @login_required(login_url='fpage:login')   
 def detail(request,album_id):
@@ -327,39 +317,4 @@ def favSong_list(request):
 def favAlbum_list(request):
     user=request.user
     fav=Album.objects.filter(is_favorite_album=True,user=user)
-    return render(request, 'fpage/favourite_album.html' , {'fav' : fav})  
-    
-    """def favAlbum(request, album_id):
-    album=get_object_or_404(Album, id=album_id)
-    try: 
-        selected_album = album.album_set.get(title=request.POST['album']) 
-    except (KeyError, Album.DoesNotExist): 
-        return render(request, 'fpage/index.html',{
-            'album' : album , 
-            'error_message' : "you didn't select a valid album"}) 
-    else: 
-        selected_album.is_favorite1 = True 
-        selected_album.save()   
-        return render(request, 'fpage/index.html' , {'all_albums' : album})
-        """
-    
-    
-    
-    """ class BlogSearchListView(BlogListView):
-            
-            paginate_by = 10
-
-            def get_queryset(self):
-                result = super(BlogSearchListView, self).get_queryset()
-
-                query = self.request.GET.get('q')
-                if query:
-                    query_list = query.split()
-                    result = result.filter(
-                        reduce(operator.and_,
-                            (Q(title__icontains=q) for q in query_list)) |
-                        reduce(operator.and_,
-                            (Q(content__icontains=q) for q in query_list))
-                    )
-
-                return result """
+    return render(request, 'fpage/favourite_album.html' , {'fav' : fav})
