@@ -1,0 +1,36 @@
+{% extends 'fpage/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="detail-container m-5 ">
+    <div class="d-flex">
+        <!--<img src="{{ album.album_logo_link }}" width="400" height="300">-->
+        <div class="ml-5 mt-5 d-flex flex-column  w-100 pl-5">
+            <h3>First-Name{{ artist.first_name }}</h2>
+            <h5>Last-Name : {{artist.last_name}} <h3>
+            <h5>date_of_birth : {{artist.date_of_birth}} </h3>
+            <h5>country_of_origin : {{artist.country_of_origin}} </h3>
+            <h5>profile-picture : {{artist.profile_picture}} </h3>
+        </div>
+    </div>
+    <table class="table table-striped">
+            <tr>
+                <th> Albums </th>
+                
+            </tr>
+        {% csrf_token %}
+        {% for song in album.song_set.all %}
+        <label for="song{{ forloop.counter }}"> 
+            <tr>
+                
+                {% comment %} <td><img src="{% static 'images/Song.jpeg' %}" width="50" height="50"></td> {% endcomment %}
+                <td><img class="mx-3"src="{% static 'images/Song.jpeg' %}" width="50" height="50">{{song.song_title}}<td>
+            
+
+        </tr>
+        </label></br>
+        {% endfor %}
+        </table>
+    </div>
+ <div>
+ {% endblock content %}

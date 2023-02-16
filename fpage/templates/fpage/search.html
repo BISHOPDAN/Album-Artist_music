@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %} 
 <div class="profile-container">
-{% for i in songs reversed %}
+{% for i in songs  %}
 <div class="card mb-3 watch-later-card">
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -15,6 +15,7 @@
         <p class="card-text">Album: {{i.album_title}}</p>
           <a href=""><button class="btn btn-outline-danger">Listen Song</button></a>
         </div>
+      </div>
       </div>
     </div>
   </div>

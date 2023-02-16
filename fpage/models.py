@@ -1,17 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import date
 from django_countries.fields import CountryField
 
 
-AlbumFormat_CHOICES = (
+ALBUMFORMAT_CHOICES = (
     ('LP', 'LP'),
     ('CD', 'CD'),
     ('MP3', 'MP3'),
     ('FLAC', 'FLAC'),
 )
 
-Genre_CHOICES = (
+GENRE_CHOICES = (
     ('Afro', 'Afro'),
     ('Blues', 'Blues'),
     ('Gospel', 'Gospel'),
@@ -39,11 +39,19 @@ class Artist(models.Model):
     class Meta:
         ordering = ["first_name"]
 
+    
+    @property
     def age(self):
+        if self.date_of_birth is not None:
+            age = date.today().year - self.date_of_birth.year
+            return age
+        
+    """def age(self):
         today = datetime.now().date()
-        return (today - self.date_of_birth).days // 365
+        return (today - self.date_of_birth).days // 365"""
 
-
+    
+    
 
 class Album(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -51,8 +59,8 @@ class Album(models.Model):
     Album_description = models.CharField(max_length=500)
     album_title = models.CharField(max_length=500)
     Year_of_release = models.PositiveSmallIntegerField()
-    genre =models.CharField(max_length=20, choices=Genre_CHOICES)
-    album_format = models.CharField(max_length=20, choices=AlbumFormat_CHOICES)
+    genre =models.CharField(max_length=20, choices=GENRE_CHOICES)
+    album_format = models.CharField(max_length=20, choices=ALBUMFORMAT_CHOICES)
     album_logo_link=models.CharField(max_length=1000)
     is_favorite_album = models.BooleanField(default=False)
     
