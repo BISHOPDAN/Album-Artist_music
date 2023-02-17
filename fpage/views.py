@@ -61,7 +61,7 @@ def logout_user(request):
     logout(request)
     return redirect('fpage:home')
 
-
+"""
 @login_required(login_url='fpage:login')
 def search(request):
     user = request.user
@@ -70,6 +70,17 @@ def search(request):
     album = Album.objects.all()
     qs = song.filter(Q(song_title__icontains=query)|Q(album__album_title__icontains=query), user=user)
     return render(request, 'fpage/search.html', {'songs': qs, "query": query})
+"""
+
+@login_required(login_url='fpage:login')
+def search(request):
+    user = request.user
+    query = request.GET.get("query")
+    song = Song.objects.all()
+    album = Album.objects.all()
+    qs = song.filter(song_title__icontains=query, user=user)
+    qs_albums=album.filter(album_title__icontains=query, user=user)
+    return render(request, 'fpage/search.html', {'songs': qs, 'albums':qs_albums, "query": query})
 
 
 

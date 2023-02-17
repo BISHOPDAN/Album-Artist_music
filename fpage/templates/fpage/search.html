@@ -1,7 +1,8 @@
 {% extends 'fpage/base.html' %}
 {% block content %}
-{% load static %} 
+{% load static %}
 <div class="profile-container">
+{% if songs %}
 {% for i in songs  %}
 <div class="card mb-3 watch-later-card">
     <div class="row no-gutters">
@@ -20,7 +21,25 @@
     </div>
   </div>
   {% endfor %}
+{% endif %}
+{% if albums %}
+{% for i in albums  %}
+<div class="card mb-3 watch-later-card">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{% static 'images/album.jpeg' %}" width="250" height="200" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+        <p class="card-text">Album: {{i.album_title}}</p>
+          <a href=""><button class="btn btn-outline-danger">Listen Song</button></a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
 </div>
 </div>
-
 {% endblock %}
